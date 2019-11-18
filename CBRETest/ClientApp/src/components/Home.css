@@ -1,0 +1,29 @@
+﻿.defFont {
+    font-size: 28px;
+    font-weight: 800;
+}
+
+#count-id {
+    display: inline-flex;
+}
+
+#count-text{
+    margin-right: 10px;
+}
+
+#count-value {
+    color: blue;
+}
+
+
+#oldest-id {
+    display: inline-flex;
+}
+
+#oldest-text {
+    margin-right: 10px;
+}
+
+.oldest{
+    color: blue;
+}
