@@ -12,19 +12,36 @@ namespace CBRETest.Controllers
         [HttpGet("[action]")]
         public IEnumerable<AddressDetails> Addressbook()
         {
-            return new List<AddressDetails>();
+            AddressBook abook = new AddressBook();
+            return abook.AddAddressFile("data/AddressBook");
+        }
+
+        public class AddressBook
+        {
+            private List<AddressDetails> arrAddress = new List<AddressDetails>();
+
+            public IEnumerable<AddressDetails> AddAddressFile(string filename)
+            {
+                AddressBook ab = new AddressBook();
+
+                var lines = System.IO.File.ReadAllLines(filename);
+                var coll = lines.Select(a => a.Split(','));
+
+                foreach(string[] arr in coll)
+                {
+                    AddressDetails ad = new AddressDetails { Name = arr[0], Sex = arr[1], Dob = DateTime.Parse(arr[2]) };
+                    arrAddress.Add(ad);
+                }
+
+                return arrAddress;
+            }
         }
 
         public class AddressDetails
         {
             public string Name { get; set; }
-            public int Sex { get; set; }
+            public string Sex { get; set; }
             public DateTime Dob { get; set; }
-
-            public AddressDetails()
-            {
-
-            }
         }
     }
 }
